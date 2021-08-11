@@ -39,8 +39,10 @@ function p-excel {
 }
 
 function p-code {
-	brew install node@14;
-	ln -s /usr/local/opt/node@14 /usr/local/opt/node
+	brew install fish;
+	cp -f fish/config.fish > ~/.config/fish/config.fish;
+	# TODO install node from paas repo
+	# TODO install go from paas repo
 	brew install yarn --ignore-dependencies;
 	brew install --cask miniconda;
 	brew install openjdk;
