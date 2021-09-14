@@ -1,7 +1,5 @@
 # Golang
 set --universal -x GO111MODULE on
-
-
 # Theme
 set -g theme_nerd_fonts yes
 
@@ -101,6 +99,7 @@ alias OPS="cd ~/Ops/"
 alias DEV="cd ~/DEV/"
 alias SITES="cd ~/Sites/"
 alias vi="sudo vim"
+alias rm="trash"
 
 # opam configuration
 source /Users/loic/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true

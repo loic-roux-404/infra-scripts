@@ -52,6 +52,7 @@ function p-code {
 	echo 'export PATH="~/.composer/vendor/bin:$PATH"' >> /etc/profile;
 	composer global require laravel/valet;
 	valet install;
+	brew install trash;
 }
 
 function p-ops {
