@@ -43,6 +43,8 @@ function p-appstore-apps {
 function p-excel {
 # Excel crack
 	brew install --cask microsoft-excel;
+	# brew install --cask microsoft-word;
+	# brew install --cask microsoft-powerpoint;
 	wget https://gist.github.com/zthxxx/9ddc171d00df98cbf8b4b0d8469ce90a/raw/61a60e3a9754fe0b36919bcf14d7ef12a0e386a9/Microsoft_Office_2019_VL_Serializer.pkg -O license_serializer.pkg;
 	sudo installer -pkg license_serializer.pkg -target /;
 	rm -rf license_serializer.pkg
