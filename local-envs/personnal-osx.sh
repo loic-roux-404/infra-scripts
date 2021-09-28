@@ -14,14 +14,6 @@
 command -v brew &>/dev/null && echo '' ||\
        	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-function android {
-	# Android dev env
-	brew install --cask temurin;
-	brew install --cask android-commandlinetools;
-	brew install gradle
-	brew install android-sdk
-}
-
 function p-brew-apps {
 	brew install --cask appcleaner;
 	brew install --cask malwarebytes;
@@ -89,7 +81,6 @@ function p-all {
 	p-brew-apps;
 	p-appstore-apps;
 	p-excel;
-	android;
 	p-code;
 	p-ops;
 	p-code-ui;
