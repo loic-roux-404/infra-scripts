@@ -14,13 +14,23 @@
 command -v brew &>/dev/null && echo '' ||\
        	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+function android {
+	# Android dev env
+	brew install --cask temurin;
+	brew install --cask android-commandlinetools;
+	brew install gradle
+	brew install android-sdk
+}
+
 function p-brew-apps {
 	brew install --cask appcleaner;
 	brew install --cask malwarebytes;
 	brew install --cask ccleaner;
 	brew install --cask omnidisksweeper;
+	brew install --cask onyx;
 	# Torrent client
 	brew install --cask transmission;
+
 }
 
 function p-appstore-apps {
@@ -40,12 +50,11 @@ function p-excel {
 
 function p-code {
 	brew install fish;
-	cp -f fish/config.fish > ~/.config/fish/config.fish;
+	cp -f fish/config.fish ~/.config/fish/config.fish;
 	# TODO install node from paas repo
 	# TODO install go from paas repo
 	brew install yarn --ignore-dependencies;
 	brew install --cask miniconda;
-	brew install openjdk;
 	brew install php;
 	brew install composer;
 	brew install nginx;
@@ -69,7 +78,7 @@ function p-code-ui {
 	brew install --cask visual-studio-code;
 	brew install --cask mongodb-compass;
 	brew install --cask sequel-pro;
-	brew install --cask phpstorm;
+	# brew install --cask phpstorm;
 	brew install --cask intellij-idea;
 }
 
@@ -78,8 +87,12 @@ function p-all {
 	p-brew-apps;
 	p-appstore-apps;
 	p-excel;
+	android;
 	p-code;
 	p-ops;
 	p-code-ui;
 }
 
+if [ "${1}" == "all" ];then
+	p-all
+fi	
