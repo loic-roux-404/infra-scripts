@@ -23,7 +23,7 @@ function p-essentials {
 	brew install --cask staruml
 	brew install --cask the-unarchiver
 	brew install --cask firefox
-	brew install --cask chromium
+	brew install --cask chrome
 }
 
 function p-brew-apps {
