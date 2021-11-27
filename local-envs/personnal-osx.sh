@@ -14,6 +14,18 @@
 command -v brew &>/dev/null && echo '' ||\
        	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+
+function p-essentials {
+	brew install --cask messenger
+	brew install --cask google-drive
+	brew install --cask osxfuse
+	brew install bar-magnet
+	brew install --cask staruml
+	brew install --cask the-unarchiver
+	brew install --cask firefox
+	brew install --cask chromium
+}
+
 function p-brew-apps {
 	brew install --cask appcleaner;
 	brew install --cask malwarebytes;
@@ -22,7 +34,13 @@ function p-brew-apps {
 	brew install --cask onyx;
 	# Torrent client
 	brew install --cask transmission;
+	brew install --cask dolphin;
+	brew install --cask openemu;
+}
 
+function p-crypto {
+	brew install --cask  ledger-live
+	wget https://github.com/greymass/anchor/releases/download/v1.3.2/mac-anchor-wallet-1.3.2-x64.dmg
 }
 
 function p-appstore-apps {
@@ -32,7 +50,7 @@ function p-appstore-apps {
 	mas lucky betternet;
 }
 
-function p-excel {
+function p-office {
 # Excel crack
 	brew install --cask microsoft-excel;
 	# brew install --cask microsoft-word;
@@ -56,6 +74,7 @@ function p-code {
 	composer global require laravel/valet;
 	valet install;
 	brew install trash;
+	brew install rustup-init;
 }
 
 function p-ops {
@@ -78,14 +97,16 @@ function p-code-ui {
 
 # Recommanded
 function p-all {
+	p-essentials;
 	p-brew-apps;
+	p-crypto
 	p-appstore-apps;
-	p-excel;
+	p-office;
 	p-code;
 	p-ops;
 	p-code-ui;
 }
 
-if [ "${1}" == "all" ];then
+if [ "$0" = "${BASH_SOURCE[0]}" ];then
 	p-all
 fi	
