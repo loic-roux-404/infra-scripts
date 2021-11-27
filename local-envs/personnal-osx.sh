@@ -18,7 +18,7 @@ command -v brew &>/dev/null && echo '' ||\
 function p-essentials {
 	brew install --cask messenger
 	brew install --cask google-drive
-	brew install --cask osxfuse
+	brew install --cask macfuse
 	brew install bar-magnet
 	brew install --cask staruml
 	brew install --cask the-unarchiver
