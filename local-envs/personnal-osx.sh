@@ -77,6 +77,7 @@ function p-code {
 	brew install composer;
 	brew install nginx;
 	echo 'export PATH="~/.composer/vendor/bin:$PATH"' >> /etc/profile;
+	export PATH="~/.composer/vendor/bin:$PATH"
 	composer global require laravel/valet;
 	valet install;
 	brew install trash;
