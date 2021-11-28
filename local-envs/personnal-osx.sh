@@ -93,7 +93,8 @@ function p-ops {
 	brew install wireshark;
 	brew install --cask vnc-viewer;
 	sudo softwareupdate --install-rosetta
-	brew install --cask virtualbox;
+	# brew install --cask virtualbox;
+	# On mac M1 replace it with https://customerconnect.vmware.com/downloads/get-download?downloadGroup=FUS-PUBTP-2021H1&download=false&fileId=b3cda4e0639c68f4374c553688ced75f
 	brew install vagrant;
 }
 
