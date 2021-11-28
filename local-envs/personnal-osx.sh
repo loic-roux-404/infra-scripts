@@ -70,12 +70,25 @@ function p-office {
 }
 
 function p-code {
+	echo 'export LC_ALL=en_US.UTF-8\nexport LANG=en_US.UTF-8' >> ~/.zshrc
+	echo 'fish' >> ~/.zshrc
+	brew install svn
+	brew tap homebrew/cask-fonts
+	brew install --cask font-fira-mono-for-powerline
 	brew install fish;
-	cp -f fish/config.fish ~/.config/fish/config.fish;
+	brew install fzf;
+	curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+	omf install bobthefish
+
+	curl -fls https://raw.githubusercontent.com/loic-roux-404/personnal-stack/master/local-envs/fish/config.fish -o ~/.config/fish/config.fish;
 	sudo curl -sSL https://git.io/g-install | sh -s
+	mkdir -p /usr/local/opt/go
+        sudo chown -R $USER:staff /usr/local/opt/go
+
 	sudo curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o /usr/local/bin/n && sudo chmod 755 /usr/local/bin/n 
 	brew install yarn --ignore-dependencies;
 	brew install --cask miniconda;
+	conda init fish
 	brew install php;
 	brew install composer;
 	brew install nginx;
@@ -122,4 +135,5 @@ function p-all {
 
 if [ "$0" = "${BASH_SOURCE[0]}" ];then
 	p-all
+	brew cleanup
 fi	
