@@ -24,6 +24,7 @@ function p-essentials {
 	brew install --cask the-unarchiver
 	brew install --cask firefox
 	brew install --cask chrome
+	brew install wget
 }
 
 function p-brew-apps {
@@ -40,7 +41,11 @@ function p-brew-apps {
 
 function p-crypto {
 	brew install --cask  ledger-live
-	wget https://github.com/greymass/anchor/releases/download/v1.3.2/mac-anchor-wallet-1.3.2-x64.dmg
+	wget https://github.com/greymass/anchor/releases/download/v1.3.2/mac-anchor-wallet-1.3.2-x64.dmg -O anchor.dmg
+	hdiutil mount anchor.dmg
+	sudo cp -R "/Volumes/Anchor\ Wallet/Anchor\ Wallet.app" /Applications
+	rm -rf anchor.dmg
+	hdiutil unmount "/Volumes/Anchor\ Wallet"
 }
 
 function p-appstore-apps {
@@ -99,7 +104,7 @@ function p-code-ui {
 function p-all {
 	p-essentials;
 	p-brew-apps;
-	p-crypto
+	p-crypto;
 	p-appstore-apps;
 	p-office;
 	p-code;
