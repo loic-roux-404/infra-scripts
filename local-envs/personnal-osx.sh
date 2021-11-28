@@ -37,7 +37,10 @@ function p-brew-apps {
 	brew install --cask transmission;
 	brew install --cask dolphin;
 	brew install --cask openemu;
-	brew install --cask calibre
+	brew install --cask calibre;
+	brew install --cask telegram;
+	brew install --cask discord;
+	brew install --cask spotify;
 }
 
 function p-crypto {
