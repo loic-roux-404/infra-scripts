@@ -89,6 +89,7 @@ function p-ops {
 	brew install --cask iterm2;
 	brew install wireshark;
 	brew install --cask vnc-viewer;
+	sudo softwareupdate --install-rosetta
 	brew install --cask virtualbox;
 	brew install vagrant;
 }
