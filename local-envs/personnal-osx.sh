@@ -69,8 +69,8 @@ function p-office {
 function p-code {
 	brew install fish;
 	cp -f fish/config.fish ~/.config/fish/config.fish;
-	# TODO install node from paas repo
-	# TODO install go from paas repo
+	curl -sSL https://git.io/g-install | sh -s
+	curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o /usr/local/bin/n && chmod 751 /usr/local/bin/n 
 	brew install yarn --ignore-dependencies;
 	brew install --cask miniconda;
 	brew install php;
