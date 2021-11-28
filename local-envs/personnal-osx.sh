@@ -72,8 +72,8 @@ function p-office {
 function p-code {
 	brew install fish;
 	cp -f fish/config.fish ~/.config/fish/config.fish;
-	curl -sSL https://git.io/g-install | sh -s
-	curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o /usr/local/bin/n && chmod 751 /usr/local/bin/n 
+	sudo curl -sSL https://git.io/g-install | sh -s
+	sudo curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o /usr/local/bin/n && sudo chmod 751 /usr/local/bin/n 
 	brew install yarn --ignore-dependencies;
 	brew install --cask miniconda;
 	brew install php;
