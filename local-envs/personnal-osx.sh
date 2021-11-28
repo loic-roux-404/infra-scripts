@@ -78,12 +78,12 @@ function p-code {
 	brew install fish;
 	brew install fzf;
 	curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-	omf install bobthefish
+	omf install agnoster
 
 	curl -fls https://raw.githubusercontent.com/loic-roux-404/personnal-stack/master/local-envs/fish/config.fish -o ~/.config/fish/config.fish;
-	sudo curl -sSL https://git.io/g-install | sh -s
 	mkdir -p /usr/local/opt/go
         sudo chown -R $USER:staff /usr/local/opt/go
+	sudo curl -sSL https://git.io/g-install | sh -s
 
 	sudo curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o /usr/local/bin/n && sudo chmod 755 /usr/local/bin/n 
 	brew install yarn --ignore-dependencies;
