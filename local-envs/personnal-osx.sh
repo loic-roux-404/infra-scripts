@@ -37,6 +37,7 @@ function p-brew-apps {
 	brew install --cask transmission;
 	brew install --cask dolphin;
 	brew install --cask openemu;
+	brew install --cask calibre
 }
 
 function p-crypto {
