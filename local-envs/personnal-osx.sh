@@ -41,6 +41,9 @@ function p-brew-apps {
 	brew install --cask telegram;
 	brew install --cask discord;
 	brew install --cask spotify;
+	brew install --cask figma
+	brew install --cask microsoft-teams
+	brew install --cask openemu;	
 }
 
 function p-crypto {
@@ -76,13 +79,14 @@ function p-code {
 	brew tap homebrew/cask-fonts
 	brew install --cask font-fira-mono-for-powerline
 	brew install fish;
+	brew install shellcheck
 	brew install fzf;
 	curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 	omf install agnoster
 
 	curl -fls https://raw.githubusercontent.com/loic-roux-404/personnal-stack/master/local-envs/fish/config.fish -o ~/.config/fish/config.fish;
 	mkdir -p /usr/local/opt/go
-        sudo chown -R $USER:staff /usr/local/opt/go
+    sudo chown -R $USER:staff /usr/local/opt/go
 	sudo curl -sSL https://git.io/g-install | sh -s
 
 	sudo curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o /usr/local/bin/n && sudo chmod 755 /usr/local/bin/n 
@@ -97,7 +101,14 @@ function p-code {
 	composer global require laravel/valet;
 	valet install;
 	brew install trash;
+
 	brew install rustup-init;
+	if [ ! -f "$HOME/.gitconfig" ]; then
+		curl -Lsf https://raw.githubusercontent.com/loic-roux-404/personnal-stack/master/local-envs/.gitconfig >> ~/.gitconfig
+	fi
+
+	git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime                                          (base)
+    sh ~/.vim_runtime/install_awesome_vimrc.sh
 }
 
 function p-ops {
@@ -108,6 +119,7 @@ function p-ops {
 	sudo softwareupdate --install-rosetta
 	# brew install --cask virtualbox;
 	# On mac M1 replace it with https://customerconnect.vmware.com/downloads/get-download?downloadGroup=FUS-PUBTP-2021H1&download=false&fileId=b3cda4e0639c68f4374c553688ced75f
+	# could try : brew install --cask vmware-fusion
 	brew install vagrant;
 	brew install packer
 }
