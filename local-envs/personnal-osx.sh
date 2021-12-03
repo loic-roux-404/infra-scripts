@@ -109,6 +109,11 @@ function p-code {
 
 	git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime                                          (base)
     sh ~/.vim_runtime/install_awesome_vimrc.sh
+
+	brew instal gh;
+	brew instal glab;
+	brew tap heroku/brew && brew install heroku;
+	brew install netlify-cli;
 }
 
 function p-ops {

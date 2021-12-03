@@ -27,7 +27,7 @@
 [color "status"]
     added = yellow
     changed = green
-    untracked = cyan
+    untracked = red
 
 # }}}
 # push/pull/diff/options {{{
