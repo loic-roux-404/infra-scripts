@@ -1,0 +1,28 @@
+{
+    "go.gopath": "/Users/loic/go",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "git.ignoreLegacyWarning": true,
+    "[json]": {
+        "editor.defaultFormatter": "numso.prettier-standard-vscode"
+    },
+    "files.autoSave": "afterDelay",
+    "files.maxMemoryForLargeFilesMB": 9042,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "[javascript]": {
+        "editor.defaultFormatter": "numso.prettier-standard-vscode"
+    },
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "cSpell.language": ",fr",
+    "workbench.colorTheme": "Monokai",
+    "editor.fontSize": 14,
+    "editor.fontFamily": "Fira Mono For Powerline, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true
+}

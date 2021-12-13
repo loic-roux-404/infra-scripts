@@ -79,15 +79,19 @@ function p-code {
 	brew tap homebrew/cask-fonts
 	brew install --cask font-fira-mono-for-powerline
 	brew install fish;
+	sudo ln -sf $(which fish) /usr/local/bin;
+	echo $(which fish) | sudo tee -a /etc/shells
+	chsh -s $(which fish)
+
+	curl -fsSL https://git.io/g-install | sudo sh -s -- -y fish zsh
+	sudo chown -R loic:staff $GOPATH $GOROOT
+
 	brew install shellcheck
 	brew install fzf;
 	curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 	omf install agnoster
 
 	curl -fls https://raw.githubusercontent.com/loic-roux-404/personnal-stack/master/local-envs/fish/config.fish -o ~/.config/fish/config.fish;
-	mkdir -p /usr/local/opt/go
-    sudo chown -R $USER:staff /usr/local/opt/go
-	sudo curl -sSL https://git.io/g-install | sh -s
 
 	sudo curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o /usr/local/bin/n && sudo chmod 755 /usr/local/bin/n 
 	brew install yarn --ignore-dependencies;
@@ -126,7 +130,7 @@ function p-ops {
 	# On mac M1 replace it with https://customerconnect.vmware.com/downloads/get-download?downloadGroup=FUS-PUBTP-2021H1&download=false&fileId=b3cda4e0639c68f4374c553688ced75f
 	# could try : brew install --cask vmware-fusion
 	brew install vagrant;
-	brew install packer
+	brew install packer;
 }
 
 function p-code-ui {
@@ -136,6 +140,7 @@ function p-code-ui {
 	brew install --cask sequel-pro;
 	# brew install --cask phpstorm;
 	brew install --cask intellij-idea;
+	brew install --cask staruml;
 }
 
 # Recommanded
