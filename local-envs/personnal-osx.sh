@@ -95,8 +95,7 @@ function p-code {
 
 	sudo curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o /usr/local/bin/n && sudo chmod 755 /usr/local/bin/n 
 	brew install yarn --ignore-dependencies;
-	brew install --cask miniconda;
-	conda init fish
+
 	brew install php;
 	brew install composer;
 	brew install nginx;
@@ -118,6 +117,13 @@ function p-code {
 	brew instal glab;
 	brew tap heroku/brew && brew install heroku;
 	brew install netlify-cli;
+
+	brew install flutter;
+
+	curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh
+	bash Mambaforge-$(uname)-$(uname -m).sh
+	rm -rf Mambaforge-$(uname)-$(uname -m).sh
+	conda init fish
 }
 
 function p-ops {
@@ -141,6 +147,20 @@ function p-code-ui {
 	# brew install --cask phpstorm;
 	brew install --cask intellij-idea;
 	brew install --cask staruml;
+}
+
+function adobe {
+	# Only PS and In for now
+	echo '[ Please select ~/Downloads as destination to make it works ]'
+	$(pwd)/local-envs/adobe/packager.command
+	echo '[ Please Disable WIFI when opening .app in ~/Downloads, press ENTER when ok ]'
+	read wifi
+	open ~/Downloads/Install\ PHSP_23.1-en_US-macuniversal.app                                                   (base)
+    open ~/Downloads/Install\ Install IDSN_17.0.1-en_US-macuniversal.app
+	echo -n "[ Apps installed ? press ENTER to finish patch IN and PS ]"
+	read name
+	sudo cp ./local-envs/adobe/InDesign_2022_17.0.1/* /Applications/Adobe\ InDesign\ 2022/Adobe\ InDesign\ 2022.app/Contents/MacOS
+	sudo cp ./local-envs/adobe/Photoshop_2022_v23.1.0/* /Applications/Adobe\ Photoshop\ 2022/Adobe\ Photoshop\ 2022.app/Contents/MacOS
 }
 
 # Recommanded
