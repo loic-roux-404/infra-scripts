@@ -25,6 +25,7 @@ function p-essentials {
 	brew install --cask firefox
 	brew install --cask chrome
 	brew install wget
+    brew install --cask notion
 }
 
 function p-brew-apps {
@@ -43,7 +44,7 @@ function p-brew-apps {
 	brew install --cask spotify;
 	brew install --cask figma
 	brew install --cask microsoft-teams
-	brew install --cask openemu;	
+	brew install --cask openemu;
 }
 
 function p-crypto {
@@ -93,7 +94,7 @@ function p-code {
 
 	curl -fls https://raw.githubusercontent.com/loic-roux-404/personnal-stack/master/local-envs/fish/config.fish -o ~/.config/fish/config.fish;
 
-	sudo curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o /usr/local/bin/n && sudo chmod 755 /usr/local/bin/n 
+	sudo curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o /usr/local/bin/n && sudo chmod 755 /usr/local/bin/n
 	brew install yarn --ignore-dependencies;
 
 	brew install php;
@@ -110,7 +111,7 @@ function p-code {
 		curl -Lsf https://raw.githubusercontent.com/loic-roux-404/personnal-stack/master/local-envs/.gitconfig >> ~/.gitconfig
 	fi
 
-	git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime                                          (base)
+	git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
     sh ~/.vim_runtime/install_awesome_vimrc.sh
 
 	brew instal gh;
@@ -135,6 +136,7 @@ function p-ops {
 	# brew install --cask virtualbox;
 	# On mac M1 replace it with https://customerconnect.vmware.com/downloads/get-download?downloadGroup=FUS-PUBTP-2021H1&download=false&fileId=b3cda4e0639c68f4374c553688ced75f
 	# could try : brew install --cask vmware-fusion
+	brew install vmware-fusion
 	brew install vagrant;
 	brew install packer;
 }
@@ -149,13 +151,28 @@ function p-code-ui {
 	brew install --cask staruml;
 }
 
+function pcode-ruby {
+	brew install gpg
+	curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+ 	curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
+
+	# Install RVM
+	echo 409B6B1796C275462A1703113804BB82D39DC0E3:6: | gpg --import-ownertrust
+ 	echo 7D2BAF1CF37B13E2069D6956105BD0E739499BDB:6: | gpg --import-ownertrust
+	curl -sSL https://get.rvm.io | bash -s -- --ignore-dotfiles
+	echo 'source $HOME/.rvm/scripts/rvm' >> ~/.zshrc
+	# For fish
+	curl -L --create-dirs -o ~/.config/fish/functions/rvm.fish https://raw.github.com/lunks/fish-nuggets/master/functions/rvm.fish
+	echo "rvm default" >> ~/.config/fish/config.fish
+}
+
 function adobe {
 	# Only PS and In for now
 	echo '[ Please select ~/Downloads as destination to make it works ]'
-	$(pwd)/local-envs/adobe/packager.command
+	"$(pwd)"/local-envs/adobe/packager.command
 	echo '[ Please Disable WIFI when opening .app in ~/Downloads, press ENTER when ok ]'
 	read wifi
-	open ~/Downloads/Install\ PHSP_23.1-en_US-macuniversal.app                                                   (base)
+	open ~/Downloads/Install\ PHSP_23.1-en_US-macuniversal.app
     open ~/Downloads/Install\ Install IDSN_17.0.1-en_US-macuniversal.app
 	echo -n "[ Apps installed ? press ENTER to finish patch IN and PS ]"
 	read name
@@ -174,8 +191,7 @@ function p-all {
 	p-ops;
 	p-code-ui;
 }
-
 if [ "$0" = "${BASH_SOURCE[0]}" ];then
 	p-all
 	brew cleanup
-fi	
+fi
