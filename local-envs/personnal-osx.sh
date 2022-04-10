@@ -26,6 +26,7 @@ function p-essentials {
 	brew install --cask chrome
 	brew install wget
     brew install --cask notion
+    brew install --cask deepl
 }
 
 function p-brew-apps {
@@ -61,6 +62,7 @@ function p-appstore-apps {
 	mas lucky Xcode;
 	mas lucky Trello;
 	mas lucky betternet;
+	mas lucky Linguee;
 }
 
 function p-office {
@@ -146,6 +148,7 @@ function p-code-ui {
 	brew install --cask visual-studio-code;
 	brew install --cask mongodb-compass;
 	brew install --cask sequel-pro;
+	brew install --cask beekeeper-studio;
 	# brew install --cask phpstorm;
 	brew install --cask intellij-idea;
 	brew install --cask staruml;
