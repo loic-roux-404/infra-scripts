@@ -76,6 +76,9 @@ function p-office {
 }
 
 function p-code {
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	echo "set PATH $HOME/.cargo/bin $PATH" >> ~/.config/fish/config.fish 
+
 	echo 'export LC_ALL=en_US.UTF-8\nexport LANG=en_US.UTF-8' >> ~/.zshrc
 	echo 'fish' >> ~/.zshrc
 	brew install svn
@@ -108,10 +111,9 @@ function p-code {
 	valet install;
 	brew install trash;
 
-	brew install rustup-init;
-	if [ ! -f "$HOME/.gitconfig" ]; then
-		curl -Lsf https://raw.githubusercontent.com/loic-roux-404/personnal-stack/master/local-envs/.gitconfig >> ~/.gitconfig
-	fi
+	# rust vim
+	git clone --depth=1 https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim
+	echo "let g:rustfmt_autosave = 1" >> ~/.vimrc
 
 	git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
     sh ~/.vim_runtime/install_awesome_vimrc.sh
@@ -127,6 +129,9 @@ function p-code {
 	bash Mambaforge-$(uname)-$(uname -m).sh
 	rm -rf Mambaforge-$(uname)-$(uname -m).sh
 	conda init fish
+
+	curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source \
+		&& fisher install jorgebucaran/fisher
 }
 
 function p-ops {
@@ -141,6 +146,7 @@ function p-ops {
 	brew install vmware-fusion
 	brew install vagrant;
 	brew install packer;
+	brew install shellcheck;
 }
 
 function p-code-ui {
