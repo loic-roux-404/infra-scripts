@@ -11,9 +11,11 @@
 # Start exec
 # =======
 # Install brew if missing
+
+export PATH="$PATH:/opt/homebrew/bin"
+
 command -v brew &>/dev/null && echo '' ||\
        	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
 
 function p-essentials {
 	brew install --cask messenger
@@ -27,6 +29,7 @@ function p-essentials {
 	brew install wget
     brew install --cask notion
     brew install --cask deepl
+	brew install trash;
 }
 
 function p-brew-apps {
@@ -75,12 +78,10 @@ function p-office {
 	rm -rf license_serializer.pkg
 }
 
-function p-code {
-	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-	echo "set PATH $HOME/.cargo/bin $PATH" >> ~/.config/fish/config.fish 
 
+
+function shell-setup {
 	echo 'export LC_ALL=en_US.UTF-8\nexport LANG=en_US.UTF-8' >> ~/.zshrc
-	echo 'fish' >> ~/.zshrc
 	brew install svn
 	brew tap homebrew/cask-fonts
 	brew install --cask font-fira-mono-for-powerline
@@ -89,19 +90,37 @@ function p-code {
 	echo $(which fish) | sudo tee -a /etc/shells
 	chsh -s $(which fish)
 
-	curl -fsSL https://git.io/g-install | sudo sh -s -- -y fish zsh
-	sudo chown -R loic:staff $GOPATH $GOROOT
-
 	brew install shellcheck
 	brew install fzf;
 	curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 	omf install agnoster
 
-	curl -fls https://raw.githubusercontent.com/loic-roux-404/personnal-stack/master/local-envs/fish/config.fish -o ~/.config/fish/config.fish;
+	cp  -f local-envs/fish/config.fish ~/.config/fish/config.fish;
 
-	sudo curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o /usr/local/bin/n && sudo chmod 755 /usr/local/bin/n
-	brew install yarn --ignore-dependencies;
+	curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source \
+	&& fisher install jorgebucaran/fisher
 
+}
+
+function vim-setup {
+	git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+    sh ~/.vim_runtime/install_awesome_vimrc.sh
+}
+
+function git-tools {
+	brew instal gh;
+	brew instal glab;
+}
+
+function lang-rust {
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	echo "set PATH $HOME/.cargo/bin $PATH" >> ~/.config/fish/config.fish
+	# rust vim
+	git clone --depth=1 https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim
+	echo "let g:rustfmt_autosave = 1" >> ~/.vimrc
+}
+
+function lang-php {
 	brew install php;
 	brew install composer;
 	brew install nginx;
@@ -109,29 +128,49 @@ function p-code {
 	export PATH="~/.composer/vendor/bin:$PATH"
 	composer global require laravel/valet;
 	valet install;
-	brew install trash;
+}
 
-	# rust vim
-	git clone --depth=1 https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim
-	echo "let g:rustfmt_autosave = 1" >> ~/.vimrc
-
-	git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
-    sh ~/.vim_runtime/install_awesome_vimrc.sh
-
-	brew instal gh;
-	brew instal glab;
-	brew tap heroku/brew && brew install heroku;
-	brew install netlify-cli;
-
-	brew install flutter;
+function lang-py {
 
 	curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh
 	bash Mambaforge-$(uname)-$(uname -m).sh
 	rm -rf Mambaforge-$(uname)-$(uname -m).sh
 	conda init fish
+}
 
-	curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source \
-		&& fisher install jorgebucaran/fisher
+function asdf-langs {
+	brew install asdf
+	echo -e "\nsource \"(brew --prefix asdf)\"/libexec/asdf.fish" >> ~/.config/fish/config.fish
+	asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+	asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+	asdf plugin-add flutter
+	asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+
+	cp .tool-versions ~/
+	cp .default-gems ~/
+
+	cd ~
+
+	asdf install
+
+	cd -
+}
+
+function p-code {
+	shell-setup
+	vim-setup
+	git-tools
+
+	brew tap thought-machine/please
+    brew install please
+	sudo ln -sf /opt/homebrew/bin/please /usr/local/bin/plz
+
+	asdf-langs
+	lang-rust
+	lang-php
+	lang-py
+
+	brew install --cask dotnet
 }
 
 function p-ops {
@@ -139,6 +178,7 @@ function p-ops {
 	brew install --cask iterm2;
 	brew install wireshark;
 	brew install --cask vnc-viewer;
+	brew install coreutils;
 	sudo softwareupdate --install-rosetta
 	# brew install --cask virtualbox;
 	# On mac M1 replace it with https://customerconnect.vmware.com/downloads/get-download?downloadGroup=FUS-PUBTP-2021H1&download=false&fileId=b3cda4e0639c68f4374c553688ced75f
@@ -146,7 +186,9 @@ function p-ops {
 	brew install vmware-fusion
 	brew install vagrant;
 	brew install packer;
-	brew install shellcheck;
+
+	brew tap heroku/brew && brew install heroku;
+	brew install netlify-cli;
 }
 
 function p-code-ui {
@@ -158,6 +200,14 @@ function p-code-ui {
 	# brew install --cask phpstorm;
 	brew install --cask intellij-idea;
 	brew install --cask staruml;
+
+	# Crack star uml
+	cd /Applications/StarUML.app/Contents/Resources || return
+	asar extract app.asar app
+	sed -i '' "s/UnregisteredDialog.showDialog()//g"  app/src/engine/license-manager.js
+	sed -i '' "s/setStatus(this, false)/setStatus(this, true)/g"  app/src/engine/license-manager.js
+	asar pack app app.asar
+	xattr -cr /Applications/StarUML.app
 }
 
 function pcode-ruby {
