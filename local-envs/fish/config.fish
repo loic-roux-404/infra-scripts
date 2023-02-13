@@ -121,3 +121,16 @@ set -g fish_user_paths "/opt/homebrew/bin" $fish_user_paths
 # !! Contents within this block are managed by 'conda init' !!
 eval /usr/local/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
+
+function sdk
+    bash -c "source '$HOME/.sdkman/bin/sdkman-init.sh'; sdk $argv[1..]"
+end
+fish_add_path (find ~/.sdkman/candidates/*/current/bin -maxdepth 0)
+
+function envsource
+  for line in (cat $argv | grep -v '^#')
+    set item (string split -m 1 '=' $line)
+    set -gx $item[1] $item[2]
+    echo "Exported key $item[1]"
+  end
+end

@@ -130,6 +130,14 @@ function lang-php {
 	valet install;
 }
 
+function lang-java {
+	curl -s "https://get.sdkman.io" | bash
+	sdk install maven
+	sdk install gradle
+	sdk install kotlin
+	sdk install java
+}
+
 function lang-py {
 
 	curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh
@@ -145,6 +153,7 @@ function asdf-langs {
 	asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 	asdf plugin-add flutter
 	asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+	asdf plugin add deno
 
 	cp .tool-versions ~/
 	cp .default-gems ~/
@@ -169,6 +178,7 @@ function p-code {
 	lang-rust
 	lang-php
 	lang-py
+	lang-java
 
 	brew install --cask dotnet
 }
@@ -212,17 +222,7 @@ function p-code-ui {
 
 function pcode-ruby {
 	brew install gpg
-	curl -sSL https://rvm.io/mpapis.asc | gpg --import -
- 	curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
-
-	# Install RVM
-	echo 409B6B1796C275462A1703113804BB82D39DC0E3:6: | gpg --import-ownertrust
- 	echo 7D2BAF1CF37B13E2069D6956105BD0E739499BDB:6: | gpg --import-ownertrust
-	curl -sSL https://get.rvm.io | bash -s -- --ignore-dotfiles
-	echo 'source $HOME/.rvm/scripts/rvm' >> ~/.zshrc
-	# For fish
-	curl -L --create-dirs -o ~/.config/fish/functions/rvm.fish https://raw.github.com/lunks/fish-nuggets/master/functions/rvm.fish
-	echo "rvm default" >> ~/.config/fish/config.fish
+ 	sudo gem install cocoapods
 }
 
 function adobe {
