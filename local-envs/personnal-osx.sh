@@ -239,6 +239,12 @@ function adobe {
 	sudo cp ./local-envs/adobe/Photoshop_2022_v23.1.0/* /Applications/Adobe\ Photoshop\ 2022/Adobe\ Photoshop\ 2022.app/Contents/MacOS
 }
 
+function pgp {
+	gpg --batch --gen-key pgp-create
+	gpg --list-secret-keys --keyid-format LONG
+	echo 'gpg --armor --export to export your public key'
+}
+
 # Recommanded
 function p-all {
 	p-essentials;
