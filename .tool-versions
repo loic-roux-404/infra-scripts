@@ -1,5 +1,6 @@
 ruby 3.1.2
-nodejs 16.16.0
-golang 1.18.5
-flutter 3.3.1
-deno 1.26.1
+nodejs 16.19.1
+golang 1.19.8
+flutter 3.7.10
+deno 1.32.4
+helm 3.9.3

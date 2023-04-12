@@ -154,6 +154,9 @@ function asdf-langs {
 	asdf plugin-add flutter
 	asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
 	asdf plugin add deno
+	asdf plugin-add java https://github.com/halcyon/asdf-java.git
+	echo '. ~/.asdf/plugins/java/set-java-home.fish' >> ~/.config/fish/config.fish
+	echo 'java_macos_integration_enable = yes' >> ~/.asdfrc
 
 	cp .tool-versions ~/
 	cp .default-gems ~/
