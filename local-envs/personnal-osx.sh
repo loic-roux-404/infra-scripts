@@ -155,8 +155,12 @@ function asdf-langs {
 	asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
 	asdf plugin add deno
 	asdf plugin-add java https://github.com/halcyon/asdf-java.git
+	asdf plugin-add dotnet-core https://github.com/emersonsoares/asdf-dotnet-core.git
+
 	echo '. ~/.asdf/plugins/java/set-java-home.fish' >> ~/.config/fish/config.fish
 	echo 'java_macos_integration_enable = yes' >> ~/.asdfrc
+
+	echo '. ~/.asdf/plugins/dotnet-core/set-dotnet-home.fish' >> ~/.config/fish/config.fish
 
 	cp .tool-versions ~/
 	cp .default-gems ~/

@@ -4,3 +4,4 @@ golang 1.19.8
 flutter 3.7.10
 deno 1.32.4
 helm 3.9.3
+dotnet-core 6.0.408
