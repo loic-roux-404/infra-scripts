@@ -154,22 +154,29 @@ function asdf-langs {
 	asdf plugin-add flutter
 	asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
 	asdf plugin add deno
-	asdf plugin-add java https://github.com/halcyon/asdf-java.git
+	asdf plugin-add java
 	asdf plugin-add dotnet-core https://github.com/emersonsoares/asdf-dotnet-core.git
 
 	echo '. ~/.asdf/plugins/java/set-java-home.fish' >> ~/.config/fish/config.fish
 	echo 'java_macos_integration_enable = yes' >> ~/.asdfrc
 
 	echo '. ~/.asdf/plugins/dotnet-core/set-dotnet-home.fish' >> ~/.config/fish/config.fish
+	echo '. ~/.asdf/plugins/java/set-java-home.fish' >> ~/.config/fish/config.fish
 
 	cp .tool-versions ~/
 	cp .default-gems ~/
 
-	cd ~
+	cd ~; asdf install; cd -
+}
 
-	asdf install
-
-	cd -
+function p-android {
+	touch ~/.android/repositories.cfg 
+	brew cask install android-sdk
+	brew cask install intel-haxm
+	export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
+	sdkmanager "platform-tools" "platforms;android-31" "extras;intel;Hardware_Accelerated_Execution_Manager" "build-tools;31.0.0" "system-images;android-31;google_apis;x86" "emulator"
+	avdmanager create avd -n test -k "system-images;android-27;google_apis;x86"
+	/usr/local/share/android-sdk/tools/emulator -avd test
 }
 
 function p-code {
@@ -262,6 +269,7 @@ function p-all {
 	p-code;
 	p-ops;
 	p-code-ui;
+	p-android
 }
 if [ "$0" = "${BASH_SOURCE[0]}" ];then
 	p-all
