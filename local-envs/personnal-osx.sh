@@ -30,6 +30,8 @@ function p-essentials {
     brew install --cask notion
     brew install --cask deepl
 	brew install trash;
+    defaults write com.apple.Finder AppleShowAllFiles true
+    killall Finder
 }
 
 function p-brew-apps {
@@ -170,7 +172,7 @@ function asdf-langs {
 }
 
 function p-android {
-	touch ~/.android/repositories.cfg 
+	touch ~/.android/repositories.cfg
 	brew cask install android-sdk
 	brew cask install intel-haxm
 	export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
