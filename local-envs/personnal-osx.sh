@@ -86,7 +86,7 @@ function shell-setup {
 	echo 'export LC_ALL=en_US.UTF-8\nexport LANG=en_US.UTF-8' >> ~/.zshrc
 	brew install svn
 	brew tap homebrew/cask-fonts
-	brew install --cask font-fira-mono-for-powerline
+	brew install --cask font-fira-code-nerd-font
 	brew install fish;
 	sudo ln -sf $(which fish) /usr/local/bin;
 	echo $(which fish) | sudo tee -a /etc/shells
@@ -94,8 +94,9 @@ function shell-setup {
 
 	brew install shellcheck
 	brew install fzf;
-	curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-	omf install agnoster
+	brew install jandedobbeleer/oh-my-posh/oh-my-posh
+	mkdir -p ~/.oh-my-posh/themes
+	curl -Lf https://github.com/JanDeDobbeleer/oh-my-posh/raw/main/themes/stelbent-compact.minimal.omp.json | tee ~/.oh-my-posh/themes/current.omp.json
 
 	cp  -f local-envs/fish/config.fish ~/.config/fish/config.fish;
 

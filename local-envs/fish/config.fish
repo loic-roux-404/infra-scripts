@@ -122,10 +122,8 @@ set -g fish_user_paths "/opt/homebrew/bin" $fish_user_paths
 eval /usr/local/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
 
-function sdk
-    bash -c "source '$HOME/.sdkman/bin/sdkman-init.sh'; sdk $argv[1..]"
-end
-fish_add_path (find ~/.sdkman/candidates/*/current/bin -maxdepth 0)
+source. /opt/homebrew/opt/asdf/libexec/asdf.fish
+source (brew --prefix asdf)/libexec/asdf.fish
 
 function envsource
   for line in (cat $argv | grep -v '^#')
@@ -134,3 +132,8 @@ function envsource
     echo "Exported key $item[1]"
   end
 end
+
+. ~/.asdf/plugins/dotnet-core/set-dotnet-home.fish
+. ~/.asdf/plugins/java/set-java-home.fish
+
+oh-my-posh init fish --config '~/.oh-my-posh/themes/current.omp.json ' | source
